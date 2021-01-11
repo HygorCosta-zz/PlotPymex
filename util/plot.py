@@ -1,5 +1,6 @@
 """ Plot simulation production. """
-import pandas as pd
+# import pandas as pd
+import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -38,6 +39,9 @@ class PlotPymex:
             "font.serif": ["Times", "Palatino", "serif"]
         })
 
+        # Axes style
+        sns.axes_style("whitegrid")
+
     @staticmethod
     def set_size(fig):
         """ Set size and layout."""
@@ -46,10 +50,78 @@ class PlotPymex:
 
     def plot_cum_oil_prod(self):
         """ Plot cumulative oil production."""
-        breakpoint()
-        axes = sns.lineplot(x='time', y='cum_op',
-                            data=self.dframe)
+        axes = sns.lineplot(x='time',
+                            y='cum_op',
+                            data=self.dframe,
+                            style='Models',
+                            hue='Models')
         axes.set(xlabel='Time (days)',
                  ylabel='Cumulative Oil Production (bbl)')
+        self.set_size(plt.gcf())
+        plt.show()
+
+    def plot_cum_oil_prod_zoom(self):
+        """ Plot cumulative oil production with
+        zoom in [7000, 7300] x."""
+        fig, ax = plt.subplots()
+        axes = sns.lineplot(x='time',
+                            y='cum_op',
+                            data=self.dframe,
+                            style='Models',
+                            hue='Models',
+                            ax=ax)
+        axes.set(xlabel='Time (days)',
+                 ylabel='Cumulative Oil Production (bbl)')
+        ax2 = plt.axes([0.2, 0.4, .2, .2],
+                       position=[0.5, 0.4, 0.2, 0.2],
+                       ylim=[41000, 49000])
+        axes2 = sns.lineplot(x='time',
+                             y='cum_op',
+                             data=self.dframe,
+                             style='Models',
+                             hue='Models',
+                             ax=ax2)
+        # ADDED: Remove labels.
+        axes2.set_ylabel('')
+        axes2.set_xlabel('')
+        plt.legend([], [], frameon=False)
+        axes2.set_title('Zoom')
+        axes2.set_xlim([7000, 7300])
+        self.set_size(plt.gcf())
+        plt.show()
+
+    def plot_oil_rate(self):
+        """ Plot Oil rate production."""
+        axes = sns.lineplot(x='time',
+                            y='prod1_or',
+                            data=self.dframe,
+                            style='Models',
+                            hue='Models')
+        axes.set(xlabel='Time (days)',
+                 ylabel='Oil rate (bbl / day)')
+        self.set_size(plt.gcf())
+        plt.show()
+
+    def plot_cum_gas_prod(self):
+        """ Plot cumulative gas production."""
+        axes = sns.lineplot(x='time',
+                            y='cum_gp',
+                            data=self.dframe,
+                            style='Models',
+                            hue='Models')
+        axes.set(xlabel='Time (days)',
+                 ylabel='Cumulative Gas Production ($ft^3$)')
+        self.set_size(plt.gcf())
+        plt.show()
+
+    def plot_ave_pressure(self):
+        """ Plot average reservoi pressure."""
+        axes = sns.lineplot(x='time',
+                            y='pres',
+                            data=self.dframe,
+                            style='Models',
+                            hue='Models')
+        axes.set(xlabel='Time (days)',
+                 ylabel='Average reservoir pressure (psia)')
         self.set_size(plt.gcf())
         plt.show()
