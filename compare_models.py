@@ -4,13 +4,13 @@ from util.plot import PlotPymex
 
 if __name__ == "__main__":
     # Models
-    hfid = pd.read_pickle('./results/mxspe010.pkl')
-    uni1 = pd.read_pickle('./results/mxspe010_ham_1.pkl')
-    uni2 = pd.read_pickle('./results/mxspe010_ham_2.pkl')
-    uni3 = pd.read_pickle('./results/mxspe010_ham_3.pkl')
-    wav1 = pd.read_pickle('./results/mxspe010_wav_1.pkl')
-    wav2 = pd.read_pickle('./results/mxspe010_wav_2.pkl')
-    wav3 = pd.read_pickle('./results/mxspe010_wav_3.pkl')
+    hfid = pd.read_pickle('./results/egg/layers/Egg_orig_wells.pkl')
+    uni1 = pd.read_pickle('./results/egg/ari/Egg_ari_1_wells.pkl')
+    uni2 = pd.read_pickle('./results/egg/ari/Egg_ari_2_wells.pkl')
+    uni3 = pd.read_pickle('./results/egg/ari/Egg_ari_3_wells.pkl')
+    wav1 = pd.read_pickle('./results/egg/wav/Egg_wav_1_wells.pkl')
+    wav2 = pd.read_pickle('./results/egg/wav/Egg_wav_2_wells.pkl')
+    wav3 = pd.read_pickle('./results/egg/wav/Egg_wav_3_wells.pkl')
     concatenated = pd.concat([hfid.assign(Models='HF'),
                               uni1.assign(Models='U1'),
                               uni2.assign(Models='U2'),
@@ -23,4 +23,4 @@ if __name__ == "__main__":
     plot = PlotPymex(concatenated)
 
     # Plot cumulative oil production
-    plot.plot_cum_oil_prod_zoom()
+    plot.cum_op_all_wells()

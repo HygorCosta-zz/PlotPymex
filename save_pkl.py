@@ -4,20 +4,22 @@ from util.simulate import Simulation
 
 if __name__ == "__main__":
     # Create simulation instance
-    reservoir = Simulation()
+    RESERVOIR_CONFIG = './PyMEX/reservoir_config_ml.yaml'
+    reservoir = Simulation(RESERVOIR_CONFIG, restore_file=False)
 
     # Define the control
-    # controls = reservoir.nominal
-    controls = None
+    # CONTROLS = reservoir.nominal
+    CONTROLS = None
 
     # Run PyMEX
-    results = reservoir(controls)
+    results = reservoir(CONTROLS)
 
     # Remove extension
     filename, _ = os.path.splitext(results.tpl)
 
     # Save Results
+    if reservoir.res_param['wells_resul']:
+        filename = filename + '_wells'
     filename = filename + '.pkl'
     save_path = os.path.join(results.run_path, filename)
-    results.data.to_pickle(save_path)
-    results.data.to_pickle("./results")
+    results.prod.to_pickle(save_path)
