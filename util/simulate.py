@@ -2,7 +2,7 @@
 import yaml
 import numpy as np
 from PyMEX.utilits.ManiParam import PyMEX
-# import multiprocessing as mp
+import multiprocessing as mp
 
 
 class Simulation:
@@ -74,7 +74,7 @@ class Simulation:
             npv = proc.map(self.run_parallel, controls)
         return np.array(npv)
 
-    def restore_prod(self, restore_file):
+    def restore_prod(self):
         """ Restore results."""
         model = PyMEX(None,
                       self.template,

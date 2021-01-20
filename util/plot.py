@@ -189,7 +189,6 @@ class PlotPymex:
         fig, axes = plt.subplots(2, 2, sharex=True, sharey=True)
 
         # Prod 1
-        breakpoint()
         ax1 = sns.lineplot(ax=axes[0, 0], x='time', y='cum_op_p1',
                            data=self.dframe, style='Models',
                            hue='Models')
@@ -197,8 +196,7 @@ class PlotPymex:
         ax1.get_legend().remove()
 
         # Prod 2
-        ax2 = sns.lineplot(ax=axes[0, 1], x='time', y='cum_op_p2',
-                           data=self.dframe, style='Models',
+        ax2 = sns.lineplot(ax=axes[0, 1], x='time', y='cum_op_p2', data=self.dframe, style='Models',
                            hue='Models')
         axes[0, 1].set_title('PROD2')
         ax2.get_legend().remove()
@@ -220,6 +218,49 @@ class PlotPymex:
         for iax in axes.flat:
             iax.set(xlabel='Time (days)',
                     ylabel='Cumulative Oil Production ($m^3$)')
+        plt.tight_layout()
+        fig.subplots_adjust(bottom=0.18)
+        fig.legend(labels=['HF', 'U1', 'U2', 'U3',
+                           'W1', 'W2', 'W3'], loc="lower center",
+                   ncol=4, fontsize='small')
+        plt.show()
+
+    def oil_rate_all_wells(self):
+        """ Plot the oil rate wells production
+        for each well."""
+        fig, axes = plt.subplots(2, 2, sharex=True, sharey=True)
+
+        # Prod 1
+        ax1 = sns.lineplot(ax=axes[0, 0], x='time', y='cum_or_p1',
+                           data=self.dframe, style='Models',
+                           hue='Models')
+        axes[0, 0].set_title('PROD1')
+        ax1.get_legend().remove()
+
+        # Prod 2
+        ax2 = sns.lineplot(ax=axes[0, 1], x='time', y='cum_or_p2',
+                           data=self.dframe, style='Models',
+                           hue='Models')
+        axes[0, 1].set_title('PROD2')
+        ax2.get_legend().remove()
+
+        # Prod 3
+        ax3 = sns.lineplot(ax=axes[1, 0], x='time', y='cum_or_p3',
+                           data=self.dframe, style='Models',
+                           hue='Models')
+        axes[1, 0].set_title('PROD3')
+        ax3.get_legend().remove()
+
+        # Prod 4
+        ax4 = sns.lineplot(ax=axes[1, 1], x='time', y='cum_or_p4',
+                           data=self.dframe, style='Models',
+                           hue='Models')
+        axes[1, 1].set_title('PROD4')
+        ax4.get_legend().remove()
+
+        for iax in axes.flat:
+            iax.set(xlabel='Time (days)',
+                    ylabel='Oil Rate ($m^3 / day$)')
         plt.tight_layout()
         fig.subplots_adjust(bottom=0.18)
         fig.legend(labels=['HF', 'U1', 'U2', 'U3',
