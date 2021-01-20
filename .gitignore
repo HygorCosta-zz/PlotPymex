@@ -1,2 +1,4 @@
 # Include folders
 PyMEX
+*.pkl
+*.pyc
