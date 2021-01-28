@@ -21,6 +21,7 @@ if __name__ == "__main__":
 
     # # Create a instance of PlotPymex class
     plot = PlotPymex(concatenated)
+    breakpoint()
 
     # Plot cumulative oil production
-    plot.oil_rate_all_wells()
+    plot.plot_cum_oil_prod_zoom()

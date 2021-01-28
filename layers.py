@@ -13,7 +13,6 @@ if __name__ == "__main__":
                               lay_2.assign(Models='2L')])
 
     # # Create a instance of PlotPymex class
-    breakpoint()
     plot = PlotPymex(concatenated)
 
     # Plot cumulative oil production
